@@ -1,5 +1,7 @@
 # La Manš — макет сайта beauty-салона
 
+**Живая версия → https://vorthys.github.io/lamans-studio-web/**
+
 Макет одностраничного сайта для салона красоты **La Manš** (Пльзень, Чехия),
 свёрстанный в фирменной стилистике их Instagram-профиля
 [@lamans_studio_plzen](https://www.instagram.com/lamans_studio_plzen/).
@@ -75,18 +77,12 @@
 python -m http.server 5173
 ```
 
-## Как опубликовать на GitHub Pages
+## Публикация
 
-Репозиторий создан приватным. Чтобы включить Pages, нужно сделать его публичным
-(либо иметь платный тариф) и включить раздачу из ветки `main`:
+Сайт раздаётся через GitHub Pages из ветки `main` (корень репозитория):
+**https://vorthys.github.io/lamans-studio-web/**
 
-```bash
-gh repo edit --visibility public --accept-visibility-change-consequences
-```
-
-```bash
-gh api -X POST repos/:owner/:repo/pages -f "source[branch]=main" -f "source[path]=/"
-```
+Любой push в `main` пересобирает страницу автоматически — сборка занимает минуту.
 
 ## Права на материалы
 
