@@ -1,0 +1,12 @@
+# lokální nástroje / editor
+.claude/
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# logy
+*.log

@@ -1,0 +1,195 @@
+/* --------------------------------------------------------------------------
+   La Manš — ceník
+   Zdroj: rezervační systém salonu (alteg.io), stav k srpnu 2026.
+   Ceny uvedené v Kč. Rozsah "od – do" závisí na délce vlasů / náročnosti.
+   -------------------------------------------------------------------------- */
+
+const PRICE_LIST = [
+  {
+    id: 'kosmetologie',
+    photo: 'assets/img/post-03.jpg',
+    items: [
+      { n: 'Konzultace', d: '15 min', p: 'zdarma' },
+      { n: 'Čištění pleti (individuálně podle stavu a potřeb pleti)', d: '1 h 30 min', p: '1 300' },
+      { n: 'Příplatek za čištění zad', d: '20 min', p: '350 – 500' },
+      { n: 'Protizánětlivé ošetření pro problematickou pleť, zjemnění pórů', d: '1 h', p: '1 500', tag: 'Peeling' },
+      { n: 'Ošetření pro citlivou pleť, růžovku a chronické začervenání', d: '1 h', p: '1 500', tag: 'Peeling' },
+      { n: 'Rozjasňující a sjednocující ošetření s vitamínem C', d: '1 h', p: '1 500', tag: 'Peeling' },
+      { n: 'Anti-age ošetření s vitamínem C a peptidy', d: '1 h', p: '1 700', tag: 'Peeling' },
+      { n: 'Microneedling Vita C Solution — pigmentace, rozjasnění, anti-age', d: '1 h', p: '1 600' },
+      { n: 'Microneedling Vita B3 Solution (niacinamid) — tonus a textura pleti', d: '1 h', p: '1 600' },
+      { n: 'Nanoneedling AA Alpha Amino Acid — hloubková výživa a regenerace', d: '1 h', p: '1 600' },
+      { n: 'Nanoneedling Vita A Solution (retinol + vitamín E) — syntéza kolagenu', d: '1 h', p: '1 600' },
+      { n: 'Microneedling pokožky hlavy — podpora růstu vlasů', d: '1 h', p: '1 500' },
+      { n: 'Kurz 5 procedur — microneedling pokožky hlavy', d: '5 × 1 h', p: '6 750', tag: 'Kurz' },
+      { n: 'Kurz 5 procedur — microneedling', d: '5 × 1 h', p: '6 400', tag: 'Kurz' },
+      { n: 'REVITAGLOW — hloubková hydratace, výživa a regenerace (včetně masáže)', d: '1 h 30 min', p: '1 400' },
+      { n: 'OXYGENACE & COLD MASK — okysličení, drenáž, tvorba kolagenu a elastinu', d: '1 h 30 min', p: '1 600' },
+      { n: 'CLEAN & PHYTOPLANT — zpevnění a omlazení (alginát se spirulinou a mátou)', d: '1 h 30 min', p: '1 600' },
+      { n: 'SENSE TREATMENT — zklidnění a regenerace citlivé a reaktivní pleti', d: '1 h', p: '1 400' },
+      { n: 'Enzymová terapie', d: '1 h', p: '1 600' },
+      { n: 'Klasická masáž obličeje, krku a dekoltu (včetně bukální dle přání)', d: '1 h 15 min', p: '850' },
+      { n: 'Frakční RF lifting + peeling — okamžitý WOW efekt', d: '1 h', p: '1 300' },
+      { n: 'Frakční RF lifting + hloubková hydratace', d: '1 h', p: '1 500' },
+      { n: 'Frakční RF lifting — lifting obličeje bez chirurgického zákroku', d: '1 h', p: '1 000' }
+    ]
+  },
+  {
+    id: 'vlasy',
+    photo: 'assets/img/post-08.jpg',
+    items: [
+      { n: 'Konzultace', d: '15 min', p: 'zdarma' },
+      { n: 'Dámský střih (krátký)', d: '1 h', p: '500 – 700' },
+      { n: 'Mikádo', d: '1 h', p: '550 – 750' },
+      { n: 'Kaskádový střih', d: '1 h', p: '600 – 800' },
+      { n: 'Ofina', d: '30 min', p: '200 – 250' },
+      { n: 'Dětská ofina', d: '20 min', p: '200 – 250' },
+      { n: 'Dětský střih', d: '1 h', p: '400 – 550' },
+      { n: 'Flísing', d: '3 h 30 min', p: '1 500 – 3 000' },
+      { n: 'Trvalá ondulace', d: '3 h', p: '2 800 – 4 500' },
+      { n: 'Foukaná', d: '1 h', p: '550 – 750' },
+      { n: 'Lokny', d: '2 h', p: '800 – 1 800' },
+      { n: 'Účesy', d: '2 h', p: '1 500 – 2 100' },
+      { n: 'Leštění vlasů (mytí, vytahování, leštění)', d: '1 h 30 min', p: '1 000 – 1 100' },
+      { n: 'Barvení odrostů', d: '2 h', p: '1 000 – 2 000' },
+      { n: 'Barvení tón k tónu (odrosty + délka)', d: '2 h', p: '1 200 – 2 700' },
+      { n: 'Tónování', d: '2 h 30 min', p: '1 200 – 2 700' },
+      { n: 'HandTouch / Ombré / Balayage / Contouring', d: '5 h', p: '2 800 – 5 000', tag: 'Top' },
+      { n: 'Klasický melír', d: '4 h 30 min', p: '2 200 – 4 500' },
+      { n: 'Mikromelír', d: '5 h', p: '2 500 – 5 000' },
+      { n: 'Barvení Air Touch', d: '6 h', p: '3 800 – 6 000', tag: 'Top' },
+      { n: 'Konturování', d: '4 h', p: '1 500 – 4 500' },
+      { n: 'Total blond', d: '4 h', p: '3 000 – 6 500' },
+      { n: 'Odbarvování', d: '3 h', p: '1 700 – 3 000' },
+      { n: 'Postupné stažení černé barvy', d: '5–8 h', p: '3 600 – 6 500' },
+      { n: 'Molekulární obnova vlasů „K18“', d: '1 h', p: '100 – 550' },
+      { n: 'Obnova vlasů Olaplex', d: '15 min', p: '800 – 1 500' },
+      { n: 'Obnova vlasů studeným keratinem', d: '1 h', p: '1 100 – 1 500' },
+      { n: 'Obnova vlasů studeným botoxem', d: '1 h', p: '1 100 – 1 600' },
+      { n: 'Keraplastika', d: '1 h', p: '1 200 – 1 900' },
+      { n: 'Organické narovnání vlasů — keratin bez formaldehydu', d: '5 h', p: '1 500 – 4 000' },
+      { n: 'Obnova vlasů — ampule STRUCTURFORT', d: '30 min', p: '300 – 400' },
+      { n: 'Obnova vlasů — keratin za tepla', d: '3 h', p: '1 200 – 3 000' },
+      { n: 'Kolagenová terapie', d: '2 h', p: '1 000 – 1 700' },
+      { n: 'Komplex proti vypadávání vlasů', d: '1 h', p: '500 – 600' },
+      { n: 'Mytí vlasů a fénování', d: '1 h', p: '500 – 600' },
+      { n: 'Peeling vlasové pokožky', d: '1 h', p: '500 – 600' },
+      { n: 'Prodlužování vlasů — 1 pramen 25 Kč', d: '3 h', p: '1 500 – 3 500' },
+      { n: 'Odstranění prodloužení — 1 pramen 10 Kč', d: '3 h', p: '1 000 – 3 000' }
+    ]
+  },
+  {
+    id: 'nehty',
+    photo: 'assets/img/post-02.jpg',
+    items: [
+      { n: 'Manikúra (bez lakování)', d: '40 min', p: '350 – 500' },
+      { n: 'Manikúra + zpevnění bází + gel lak', d: '2 h', p: '600 – 900', tag: 'Top' },
+      { n: 'Manikúra + zpevnění gelem + gel lak (délka 3+)', d: '3 h', p: '1 000 – 1 100' },
+      { n: 'Manikúra + gelové zpevnění + gel lak', d: '2 h 30 min', p: '500 – 1 001' },
+      { n: 'Japonská manikúra', d: '1 h', p: '700' },
+      { n: 'Francouzská manikúra / gradient (ombré)', d: '30 min', p: '100' },
+      { n: 'Stavěná francouzská manikúra', d: '4 h', p: '1 500' },
+      { n: 'Prodloužení nehtů', d: '3 h', p: '700 – 1 200' },
+      { n: 'Prodloužení nehtů (délka 3+)', d: '3 h', p: '700 – 1 200' },
+      { n: 'Prodloužení 1 zlomeného nehtu', d: '30 min', p: '200' },
+      { n: 'Design 5 a více nehtů', d: '20 min', p: '60' },
+      { n: 'Odstranění materiálu', d: '1 h', p: '150' },
+      { n: 'Oprava v záruce', d: '1 h', p: 'zdarma', tag: 'Záruka' },
+      { n: 'Parafínová terapie rukou', d: '40 min', p: '400' },
+      { n: 'Pánská manikúra (bez lakování)', d: '1 h', p: '500' },
+      { n: 'Pánská pedikúra', d: '2 h', p: '700 – 1 000' },
+      { n: 'Pedikúra — přístrojové ošetření chodidel a prstů + lakování', d: '2 h 30 min', p: '700 – 1 000' },
+      { n: 'Pedikúra — přístrojové ošetření chodidel a prstů bez lakování', d: '2 h', p: '600 – 900' },
+      { n: 'Pedikúra — přístrojové ošetření prstů + lakování', d: '2 h', p: '400 – 800' },
+      { n: 'Pedikúra — přístrojové ošetření prstů bez lakování', d: '1 h', p: '400 – 600' }
+    ]
+  },
+  {
+    id: 'oboci',
+    photo: 'assets/img/post-11.jpg',
+    items: [
+      { n: 'Laminace obočí bez barvení', d: '45 min', p: '500' },
+      { n: 'Barvení obočí bez úpravy', d: '30 min', p: '300' },
+      { n: 'Úprava obočí bez barvení', d: '30 min', p: '300' },
+      { n: 'Vitamínový komplex pro řasy / obočí', d: '20 min', p: '300' },
+      { n: 'Laminace + barvení obočí', d: '1 h', p: '650', tag: 'Top' },
+      { n: 'Korekce + barvení obočí', d: '1 h', p: '500' },
+      { n: 'Lash lifting + barvení řas', d: '1 h 15 min', p: '800', tag: 'Top' },
+      { n: 'Barvení řas', d: '40 min', p: '300' },
+      { n: 'Pánská korekce obočí', d: '30 min', p: '300' },
+      { n: 'Pánská laminace obočí (bez barvení / s barvením)', d: '1 h', p: '650' },
+      { n: 'Zesvětlení obočí + úprava tvaru', d: '1 h', p: '500' },
+      { n: 'Set „Vitamin bomb“ — korekce obočí + vitamínový komplex', d: '1 h', p: '670', tag: 'Set' },
+      { n: 'Set „Natural shine“ — laminace řas + laminace obočí, bez barvení', d: '1 h 30 min', p: '1 080', tag: 'Set' },
+      { n: 'Set „Total look“ — laminace a barvení řas + laminace a barvení obočí', d: '2 h', p: '1 300', tag: 'Set' },
+      { n: 'Set „Magic“ — laminace a barvení řas + korekce a barvení obočí', d: '2 h', p: '1 170', tag: 'Set' },
+      { n: 'Set „Elegance“ — korekce a barvení obočí + barvení řas', d: '1 h', p: '670', tag: 'Set' }
+    ]
+  },
+  {
+    id: 'rasy',
+    photo: 'assets/img/post-10.jpg',
+    items: [
+      { n: 'Klasické prodlužování řas', d: '2 h 30 min', p: '800' },
+      { n: 'Prodlužování řas 2D', d: '3 h', p: '900' },
+      { n: 'Prodlužování řas 3D', d: '3 h', p: '1 000', tag: 'Top' },
+      { n: 'Prodlužování řas 4–6D', d: '3 h 30 min', p: '1 200' },
+      { n: 'Prodlužování řas 7+D — mega objem', d: '3 h 30 min', p: '1 300' },
+      { n: 'Barevné řasy — příplatek', d: '15 min', p: '150' },
+      { n: 'Odstranění bez následného prodloužení', d: '20 min', p: '200' },
+      { n: 'Odstranění aplikovaných řas (cizí práce)', d: '35 min', p: '150' }
+    ]
+  },
+  {
+    id: 'masaze',
+    photo: 'assets/img/post-12.jpg',
+    items: [
+      { n: 'Klasická masáž — krk + horní část zad (límcová zóna)', d: '30 min', p: '600' },
+      { n: 'Klasická masáž — záda + krk', d: '45 min', p: '630 – 800' },
+      { n: 'Klasická masáž — celé tělo', d: '1 h 30 min', p: '900 – 1 100' },
+      { n: 'Regenerační masáž — krk + horní část zad (límcová zóna)', d: '30 min', p: '700' },
+      { n: 'Regenerační masáž — záda + krk', d: '45 min', p: '900' },
+      { n: 'Regenerační masáž — celé tělo', d: '1 h 30 min', p: '1 200' },
+      { n: 'Uvolňující masáž — záda', d: '45 min', p: '630 – 800' },
+      { n: 'Uvolňující masáž — záda + nohy', d: '1 h', p: '730 – 1 000' },
+      { n: 'Uvolňující masáž — celé tělo', d: '1 h 30 min', p: '900 – 1 100' },
+      { n: 'Manuální lymfodrenáž — celé tělo', d: '1 h 30 min', p: '900 – 1 100' },
+      { n: 'Anticelulitidní masáž — břicho + boky + nohy', d: '1 h 30 min', p: '1 000' },
+      { n: 'Anticelulitidní masáž — nohy', d: '1 h', p: '900' },
+      { n: 'Masáž obličeje a krční zóny', d: '1 h 30 min', p: '800' },
+      { n: 'Sportovní masáž — celé tělo', d: '1 h 30 min', p: '900' },
+      { n: 'Sportovní masáž — záda a krční oblast', d: '1 h', p: '720' },
+      { n: 'Dětská masáž — celé tělo', d: '1 h 30 min', p: '600 – 700' },
+      { n: 'Dětská masáž — záda', d: '1 h', p: '450 – 500' },
+      { n: 'Dětská masáž — krk + horní část zad', d: '45 min', p: '450' },
+      { n: 'Solná masáž — MINERAL DETOX', d: '1 h', p: '1 000', tag: 'SPA' },
+      { n: 'Kokosová masáž — ISLAND CARE', d: '1 h', p: '900', tag: 'SPA' },
+      { n: 'Medová masáž — SWEET DETOX', d: '1 h', p: '1 000', tag: 'SPA' },
+      { n: 'Čokoládová masáž — CHOCO DREAM', d: '1 h', p: '1 000', tag: 'SPA' },
+      { n: 'Aroma masáž — AROMA BALANCE', d: '1 h', p: '1 000', tag: 'SPA' },
+      { n: 'Thajská masáž s bylinnými měšci', d: '1 h', p: '1 000', tag: 'SPA' },
+      { n: 'Masáž lávovými kameny — VOLCANO TOUCH', d: '1 h 30 min', p: '1 000', tag: 'SPA' },
+      { n: 'Korekce postavy — SILHOUETTE', d: '1 h 30 min', p: '1 100' },
+      { n: 'Anticelulitidní masáž BODY SCULPT — nohy + stehna', d: '1 h', p: '800' },
+      { n: 'Anticelulitidní masáž BODY SCULPT — břicho + boky + nohy', d: '1 h', p: '720' },
+      { n: 'Anticelulitidní masáž BODY SCULPT — břicho + boky', d: '1 h', p: '450' },
+      { n: 'Masáž ve čtyřech rukou', d: '1 h 30 min', p: '1 900', tag: 'Duo' }
+    ]
+  }
+];
+
+/* Instagram galerie — pořadí odpovídá feedu @lamans_studio_plzen */
+const GALLERY = [
+  { src: 'assets/img/post-02.jpg', cat: 'nehty' },
+  { src: 'assets/img/post-08.jpg', cat: 'vlasy' },
+  { src: 'assets/img/post-10.jpg', cat: 'rasy' },
+  { src: 'assets/img/post-03.jpg', cat: 'kosmetologie' },
+  { src: 'assets/img/post-11.jpg', cat: 'oboci' },
+  { src: 'assets/img/post-06.jpg', cat: 'nehty' },
+  { src: 'assets/img/post-04.jpg', cat: 'vlasy' },
+  { src: 'assets/img/post-12.jpg', cat: 'masaze' },
+  { src: 'assets/img/post-01.jpg', cat: 'nehty' },
+  { src: 'assets/img/post-09.jpg', cat: 'nehty' },
+  { src: 'assets/img/post-05.jpg', cat: 'salon' },
+  { src: 'assets/img/post-07.jpg', cat: 'nehty' }
+];
