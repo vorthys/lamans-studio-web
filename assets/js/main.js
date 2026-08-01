@@ -18,8 +18,12 @@
     return dict[key] !== undefined ? dict[key] : (I18N.cs[key] || '');
   }
 
+  // platný je jen jazyk nabízený v přepínači — jinak by uložená volba
+  // (např. dřívější 'ru') přepnula web do jazyka, k němuž chybí tlačítko
+  const isOffered = code => LANGS.some(l => l.code === code) && !!I18N[code];
+
   function applyLang(next) {
-    lang = I18N[next] ? next : 'cs';
+    lang = isOffered(next) ? next : LANGS[0].code;
 
     const meta = LANGS.find(l => l.code === lang) || LANGS[0];
     document.documentElement.lang = meta.htmlLang;
@@ -61,22 +65,35 @@
 
   const burger = $('#burger');
   const nav    = $('#nav');
+  const scrim  = $('#navScrim');
 
-  function closeNav() {
-    nav.classList.remove('is-open');
-    burger.setAttribute('aria-expanded', 'false');
+  // rolování stránky zamyká zásuvka i lupa galerie — stav počítáme z obou
+  let lbOpen = false;
+  function syncScrollLock() {
+    const locked = nav.classList.contains('is-open') || lbOpen;
+    document.body.classList.toggle('is-locked', locked);
   }
 
-  burger.addEventListener('click', () => {
-    const open = nav.classList.toggle('is-open');
+  function setNav(open) {
+    nav.classList.toggle('is-open', open);
+    scrim.classList.toggle('is-on', open);
     burger.setAttribute('aria-expanded', String(open));
-  });
+    syncScrollLock();
+  }
+  const closeNav = () => setNav(false);
+
+  burger.addEventListener('click', () => setNav(!nav.classList.contains('is-open')));
+  scrim.addEventListener('click', closeNav);
 
   $$('a', nav).forEach(a => a.addEventListener('click', closeNav));
 
-  document.addEventListener('click', e => {
-    if (nav.classList.contains('is-open') && !nav.contains(e.target) && !burger.contains(e.target)) closeNav();
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && nav.classList.contains('is-open')) closeNav();
   });
+
+  // po přechodu na širokou obrazovku nesmí zůstat zamčené rolování
+  const wide = window.matchMedia('(min-width: 901px)');
+  wide.addEventListener('change', e => { if (e.matches) closeNav(); });
 
   /* ------------------------------------------- aktivní položka navigace */
 
@@ -243,17 +260,32 @@
 
   function openLb(i) {
     showLb(i);
+    lbOpen = true;
     lb.hidden = false;
-    document.body.classList.add('is-locked');
+    syncScrollLock();
     requestAnimationFrame(() => lb.classList.add('is-open'));
     $('#lbClose').focus();
   }
 
   function closeLb() {
+    lbOpen = false;
     lb.classList.remove('is-open');
-    document.body.classList.remove('is-locked');
-    setTimeout(() => { lb.hidden = true; }, 320);
+    syncScrollLock();
+    setTimeout(() => { if (!lbOpen) lb.hidden = true; }, 320);   // až po dojetí prolnutí
   }
+
+  /* přejetí prstem mezi snímky */
+  let touchX = 0, touchY = 0;
+  lb.addEventListener('touchstart', e => {
+    touchX = e.changedTouches[0].clientX;
+    touchY = e.changedTouches[0].clientY;
+  }, { passive: true });
+
+  lb.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchX;
+    const dy = e.changedTouches[0].clientY - touchY;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) showLb(lbIndex + (dx < 0 ? 1 : -1));
+  }, { passive: true });
 
   $('#lbClose').addEventListener('click', closeLb);
   $('#lbPrev').addEventListener('click', () => showLb(lbIndex - 1));
@@ -274,8 +306,15 @@
 
   /* ================================================================= start */
 
-  let saved = 'cs';
-  try { saved = localStorage.getItem(STORE_KEY) || 'cs'; } catch (e) { /* private mode */ }
+  let saved = null;
+  try { saved = localStorage.getItem(STORE_KEY); } catch (e) { /* private mode */ }
+
+  // bez uložené volby se řídíme jazykem prohlížeče: čeština zůstává výchozí,
+  // ostatní návštěvníci dostanou rovnou angličtinu
+  if (!isOffered(saved)) {
+    const nav0 = (navigator.language || 'cs').toLowerCase();
+    saved = nav0.startsWith('cs') || nav0.startsWith('sk') ? 'cs' : 'en';
+  }
   applyLang(saved);
 
 })();

@@ -1,6 +1,10 @@
 /* --------------------------------------------------------------------------
    La Manš — lokalizace
-   Salon komunikuje česky, rusky a ukrajinsky (viz profil na Instagramu).
+
+   Přepínač na webu nabízí CZ a EN — viz konstanta LANGS na konci souboru.
+   Slovníky ru/uk zůstávají v katalogu připravené: pro jejich zapnutí stačí
+   přidat řádek do LANGS a odpovídající tlačítko do hlavičky v index.html.
+
    Názvy jednotlivých úkonů v ceníku zůstávají v češtině — jde o oficiální
    názvy služeb v rezervačním systému.
    -------------------------------------------------------------------------- */
@@ -107,7 +111,117 @@ const I18N = {
     'footer.contact': 'Kontakt',
     'footer.rights': 'Všechna práva vyhrazena.',
     'footer.madeBy': 'Návrh webu podle vizuálního stylu salonu.',
-    'footer.book': 'Rezervace'
+    'footer.book': 'Rezervace',
+
+    'sticky.call': 'Zavolat',
+    'sticky.book': 'Rezervovat'
+  },
+
+  en: {
+    'meta.title': 'La Manš — Beauty Salon Plzeň | Nails, Hair, Massage, Lashes',
+    'meta.desc': 'La Manš — a modern beauty salon in Plzeň. Nails, hair, skincare, massage, lashes and brows. Pražská 53/29. 10 % off your first visit.',
+
+    'nav.services': 'Services',
+    'nav.price': 'Price list',
+    'nav.gallery': 'Gallery',
+    'nav.about': 'About',
+    'nav.contact': 'Contact',
+    'nav.book': 'Book now',
+
+    'hero.eyebrow': 'Beauty salon · Plzeň',
+    'hero.line1': 'Where beauty',
+    'hero.italic': 'knows',
+    'hero.line2': 'no limits',
+    'hero.lead': 'Nails, hair, skincare, massage, lashes and brows — all under one roof in central Plzeň. By appointment only, with a personal approach and professional products.',
+    'hero.cta': 'Book an appointment',
+    'hero.cta2': 'See the price list',
+    'hero.badge': '10 % off your first visit',
+    'hero.scroll': 'Scroll down',
+
+    'stats.clients': 'followers on Instagram',
+    'stats.services': 'services on the menu',
+    'stats.langs': 'languages — CZ, RU, UA',
+    'stats.hours': 'open every day',
+
+    'marquee.items': 'Nails · Pedicure · Hair · Colourist · Skincare · Massage · Lash extensions · Brows · Lash lifting · Sugaring · SPA',
+
+    'services.eyebrow': 'What we do',
+    'services.title': 'Our',
+    'services.titleItalic': 'services',
+    'services.lead': 'Fourteen categories of care for your looks and your body — from a quick brow shape to a full-day hair transformation.',
+    'services.from': 'from',
+    'services.more': 'See prices',
+    'services.extraTitle': 'We also offer',
+    'services.extra': 'Complete SPA programmes · Facial massage · SPA massage · Body wraps · Laser hair removal · Sugaring and waxing for women · Waxing for men · Men’s services',
+
+    'cat.kosmetologie': 'Skincare',
+    'cat.kosmetologie.d': 'Deep cleansing, peels, microneedling, RF lifting and anti-age treatments tailored to your skin.',
+    'cat.vlasy': 'Hair / Colourist',
+    'cat.vlasy.d': 'Cuts, colour, Air Touch, balayage, total blonde and K18 or Olaplex hair repair.',
+    'cat.nehty': 'Nails / Pedicure',
+    'cat.nehty.d': 'Classic and Japanese manicure, gel polish, extensions, nail art and machine pedicure.',
+    'cat.oboci': 'Brows / Lash lifting',
+    'cat.oboci.d': 'Lamination, tinting, shaping — plus discounted sets that cover lashes and brows in one visit.',
+    'cat.rasy': 'Lash extensions',
+    'cat.rasy.d': 'From classic through 2D and 3D up to 7+D mega volume. Coloured lashes available.',
+    'cat.masaze': 'Massage',
+    'cat.masaze.d': 'Classic, sports, lymphatic drainage, anti-cellulite and SPA rituals with honey, chocolate and hot stones.',
+    'cat.salon': 'Inside the salon',
+
+    'price.eyebrow': 'Clear pricing',
+    'price.title': 'Price',
+    'price.titleItalic': 'list',
+    'price.lead': 'We confirm the final price at your consultation — hair depends on length and thickness, skincare on the treatment you choose.',
+    'price.duration': 'Duration',
+    'price.price': 'Price',
+    'price.note': 'Prices are in Czech koruna. Live availability is in the online booking system.',
+    'price.book': 'Book online',
+
+    'gallery.eyebrow': 'Our work',
+    'gallery.title': 'From our',
+    'gallery.titleItalic': 'Instagram',
+    'gallery.lead': 'We post our artists’ real results every day. Follow us for inspiration and free slots.',
+    'gallery.follow': 'Follow @lamans_studio_plzen',
+    'gallery.close': 'Close',
+    'gallery.prev': 'Previous',
+    'gallery.next': 'Next',
+
+    'about.eyebrow': 'About us',
+    'about.title': 'A salon you',
+    'about.titleItalic': 'come back to',
+    'about.p1': 'La Manš is a modern beauty studio in the centre of Plzeň. Nails, pedicure, hair, skincare, massage, lashes, brows and sugaring all sit under one roof — no need to drive across town.',
+    'about.p2': 'We work strictly by appointment so every client gets enough time and calm. We use quality professional products and treat everyone individually — from the first consultation to aftercare.',
+    'about.f1': 'Personal approach',
+    'about.f1d': 'A free consultation before every larger treatment.',
+    'about.f2': 'Quality products',
+    'about.f2d': 'Professional cosmetics and certified preparations.',
+    'about.f3': 'Three languages',
+    'about.f3d': 'Our team speaks Czech, Russian and Ukrainian.',
+    'about.f4': 'Nail guarantee',
+    'about.f4d': 'Repairs within the guarantee period are free of charge.',
+
+    'contact.eyebrow': 'Contact',
+    'contact.title': 'Come',
+    'contact.titleItalic': 'and see us',
+    'contact.address': 'Address',
+    'contact.phone': 'Phone',
+    'contact.email': 'E-mail',
+    'contact.hours': 'Opening hours',
+    'contact.hoursVal': 'Daily 9:00 – 18:00',
+    'contact.hoursNote': 'By appointment only',
+    'contact.social': 'Social media',
+    'contact.cta': 'Book an appointment online',
+    'contact.mapTitle': 'Map — Pražská 53/29, Plzeň',
+
+    'footer.tagline': 'Where beauty knows no limits.',
+    'footer.nav': 'Navigation',
+    'footer.contact': 'Contact',
+    'footer.rights': 'All rights reserved.',
+    'footer.madeBy': 'Web design based on the salon’s visual identity.',
+    'footer.book': 'Booking',
+
+    'sticky.call': 'Call',
+    'sticky.book': 'Book'
   },
 
   ru: {
@@ -211,7 +325,10 @@ const I18N = {
     'footer.contact': 'Контакты',
     'footer.rights': 'Все права защищены.',
     'footer.madeBy': 'Дизайн сайта по фирменному стилю салона.',
-    'footer.book': 'Запись'
+    'footer.book': 'Запись',
+
+    'sticky.call': 'Позвонить',
+    'sticky.book': 'Записаться'
   },
 
   uk: {
@@ -315,12 +432,18 @@ const I18N = {
     'footer.contact': 'Контакти',
     'footer.rights': 'Усі права захищено.',
     'footer.madeBy': 'Дизайн сайту за фірмовим стилем салону.',
-    'footer.book': 'Запис'
+    'footer.book': 'Запис',
+
+    'sticky.call': 'Подзвонити',
+    'sticky.book': 'Записатися'
   }
 };
 
+/* Jazyky nabízené v přepínači. Pořadí odpovídá tlačítkům v hlavičce.
+   Chcete-li vrátit ruštinu / ukrajinštinu, přidejte sem řádek
+   { code: 'ru', label: 'RU', htmlLang: 'ru' } a tlačítko do index.html —
+   slovníky jsou výše připravené. */
 const LANGS = [
   { code: 'cs', label: 'CZ', htmlLang: 'cs' },
-  { code: 'ru', label: 'RU', htmlLang: 'ru' },
-  { code: 'uk', label: 'UA', htmlLang: 'uk' }
+  { code: 'en', label: 'EN', htmlLang: 'en' }
 ];
