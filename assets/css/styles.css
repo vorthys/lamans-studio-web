@@ -39,6 +39,11 @@
 
 /* ----------------------------------------------------------------- reset */
 *,*::before,*::after{ box-sizing:border-box; }
+
+/* Musí přebít vlastní display u skrytých prvků: pravidlo autora je silnější
+   než [hidden]{display:none} z prohlížeče. Bez toho zůstane zavřená lupa
+   galerie ležet přes celou stránku a odchytává všechna kliknutí. */
+[hidden]{ display:none !important; }
 html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
 body{
   margin:0;
@@ -530,9 +535,13 @@ body.is-locked{ overflow:hidden; }
   .header__actions > .btn{ display:none; }
   .header__inner{ padding-top:calc(1.1rem + env(safe-area-inset-top)); }
 
-  /* zatmavení stránky pod otevřenou zásuvkou */
+  /* Zatmavení pod otevřenou zásuvkou.
+     z-index musí zůstat POD hlavičkou (100): .nav sice má 110, ale leží uvnitř
+     .header, který je vlastním stacking kontextem — vyšší číslo na zásuvce se
+     tedy počítá jen uvnitř hlavičky. Se scrimem nad 100 by překryl i zásuvku
+     a odchytával kliknutí na její odkazy. Nad spodní lištou (95) zůstává. */
   .nav-scrim{
-    display:block; position:fixed; inset:0; z-index:105; background:rgba(0,0,0,.6);
+    display:block; position:fixed; inset:0; z-index:96; background:rgba(0,0,0,.6);
     opacity:0; visibility:hidden; transition:opacity .4s var(--ease), visibility .4s;
   }
   .nav-scrim.is-on{ opacity:1; visibility:visible; }
